@@ -11,9 +11,21 @@ module.exports = {
 	module:{
 		rules: [
 			{
-				test: /\.css$/,
-				use: [ 'style-loader', 'css-loader' ]
+                enforce:'pre',
+				test: /\.sass$/,
+				use: ['style-loader', 'css-loader', 'autoprefixer-loader?browsers=last 2 versions', 'sass-loader']
 			},
+            {
+                enforce:'pre',
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "eslint-loader",
+                options: {
+                	globals:[
+                		'document', 'window', '$'
+					]
+                }
+            },
 			{
 				test: /\.js$/,
 				exclude: /(node_modules)/,
@@ -23,17 +35,29 @@ module.exports = {
                         presets: ['env']
                     }
 				}
-			}
+			},
+			{
+				test: /\.(jpg|png|jpeg)/,
+				loader: 'file-loader',
+				options:{
+                    limit: 20000
+				}
+			},
+
 		]
 	},
 	plugins: [new webpack.optimize.UglifyJsPlugin({
 		minimize: true,
+        beautify: false,
 		compress: {
 			warnings: false
+		},
+		output: {
+			comments: false
 		}
 	})],
 	devServer: {
 		inline:true,
 		port: 8081
 	}
-}
+};

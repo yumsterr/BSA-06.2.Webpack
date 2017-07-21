@@ -1,17 +1,28 @@
-var userList = require('./userList.js');
-require('../css/style.css');
+require('./../css/style.sass');
+
 
 const users = [
-    { name: 'Oksana', age: 22 }, 
-    { name: 'Viktor', age: 14 }, 
-    { name: 'Ivan', age: 37 }, 
-    { name: 'Yana', age: 45 },
-    { name: 'Oleksandr', age: 19}, 
-    { name: 'Olena', age: 18}, 
-    { name: 'Mykola', age: 27}, 
-    { name: 'Andriy', age: 33}, 
-    { name: 'Zakhar', age: 40}
+  { name: 'Arya Stark', house: 'Stark' },
+  { name: 'Bran Stark', house: 'Stark' },
+  { name: 'Sansa Stark', house: 'Stark' },
+  { name: 'Brienne Tarth', house: 'Tarth' },
+  { name: 'Cersei Lannister', house: 'Lannister' },
+  { name: 'Jaime Lannister', house: 'Lannister' },
+  { name: 'Tyrion Lannister', house: 'Lannister' },
+  { name: 'Daenerys Targaryen', house: 'Targaryen' },
+  { name: 'Jon Snow', house: 'Stark' },
+  { name: 'Petyr Baelish', house: 'Baelish' },
+  { name: 'Theon Greyjoy', house: 'Greyjoy' },
+  { name: 'Tormund Giantsbane', house: false },
 ];
 
-var userListModule = new userList(users);
-userListModule.showList();
+
+// Houses words
+const familyWords = {
+  Stark: 'Winter is Coming',
+  Greyjoy: 'We Do Not Sow',
+  Lannister: 'Hear Me Roar!',
+  Targaryen: 'Fire and Blood',
+};
+
+require('./userList')(users, familyWords);
