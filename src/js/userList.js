@@ -11,9 +11,8 @@ class Hero {
   }
 
   renderHero(parentNode) {
-    const imgPath = require(`file-loader!../img/${this.img}`);
+    const imgPath = require(`../img/${this.img}`);
     // const imgPath = `./src/img/${this.img}`;
-    console.log(imgPath);
     const user = document.createElement('div');
     const character = document.createElement('div');
     const charName = document.createElement('div');
@@ -29,7 +28,7 @@ class Hero {
 
     charName.innerHTML = this.name;
     charWords.innerHTML = this.words;
-    img.setAttribute('src', `${imgPath}`);
+    img.setAttribute('src', `dist/${imgPath}`);
 
     imgCont.appendChild(img);
     user.appendChild(imgCont);
